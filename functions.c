@@ -34,7 +34,7 @@
  */
 void printBorder()
 {
-    printf("\033[1;31;m-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+\033[0m\n");
+    printf("\033[1;31m-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+\033[0m\n");
 }
 
 /* Prints the title of the program.
@@ -60,6 +60,10 @@ void printTitle()
     printf("\033[1;32m                                    |_|   |_____| |_| |____/                    \033[0m\n");
     printf("\n");
     printf("\n");
+    printBorder();
+
+    printf("Press ENTER to continue!\n");
+    while (getchar() != '\n');
 
 }
 
@@ -74,7 +78,7 @@ void printTitle()
 void menuSelect(int *menuChoicePtr)
 {
     int flag = 0;
-    
+
     printBorder();
     printf("\n%45s", "MAIN  MENU");
     printf("\n%50s", "--------------------");
@@ -109,11 +113,11 @@ void menuSelect(int *menuChoicePtr)
  * 
  * 
  */
-void executeChoice(int menuChoice)
+void executeChoice(int menuChoice, int* menuChoicePtr)
 {
     if (menuChoice == 1)
     {
-        printf("You chose 1\n");
+        startGame(menuChoicePtr);
     }
     else if (menuChoice == 2)
     {
@@ -124,4 +128,21 @@ void executeChoice(int menuChoice)
         printf("You chose 3\n");
     }
 }
+
+void startGame (int* menuChoicePtr)
+{
+    int choice;
+    printf("[0] Go back\n");
+    printf("[1] <New Player>\n");
+    getchar();
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 0:
+            *menuChoicePtr = 0;
+            break;
+    }
+}
+
 
