@@ -9,12 +9,13 @@
 
 
 /* preprocessor directives> */
-
 #include <stdio.h>
 #include "header.h"
 
 /* definitions (i.e., constants, typedefs, structs) */
-
+typedef int bool;
+#define true 1
+#define false 0
 
 /* function implementations */
 
@@ -22,6 +23,8 @@
 int main ()
 {
     bool gameFlag = true;
+
+    // FILE *playerList;
 
     int menuChoice = 0;
     int *menuChoicePtr = &menuChoice;
@@ -38,8 +41,12 @@ int main ()
                 menuChoice = -1;
             }
             else
-                executeChoice(menuChoice);
+            {
+                executeChoice(menuChoice, menuChoicePtr);
+                printf("%d\n", menuChoice);
+            }
         }
+
     } 
 
 
