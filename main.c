@@ -24,7 +24,8 @@ int main ()
 {
     bool gameFlag = true;
 
-    // FILE *playerList;
+    FILE *playerList;
+    playerList = fopen("players.txt", "r");
 
     int menuChoice = 0;
     int *menuChoicePtr = &menuChoice;
@@ -35,25 +36,19 @@ int main ()
         while (menuChoice == 0)
         {
             menuSelect(menuChoicePtr);
-            if (menuChoice == 0)
+            switch (menuChoice)
             {
-                gameFlag = 0;
-                menuChoice = -1;
-            }
-            else
-            {
-                executeChoice(menuChoice, menuChoicePtr);
-                printf("%d\n", menuChoice);
+                case 0:
+                    menuChoice = -1;                                    // Exits inner & outer loops, ending the game.
+                    gameFlag = false;
+                    break;
+                case 1:
+                    startGame(menuChoicePtr, playerList);               // Starts the game.
+                    printf("%d\n", menuChoice);
+                    break;
             }
         }
-
     } 
-
-
-
-
-
-
 
 
     return 0;
