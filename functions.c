@@ -29,21 +29,15 @@
 
 /* Prints a border for UI purposes.
  *
- *
- *
  */
 void printBorder()
 {
     printf("\033[1;31m-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+-+H+\033[0m\n");
 }
 
-/* Prints the title of the program.
+/* Prints the title of the program, and prompts the user to press ENTER to continue.
  * 
- *
- *
- *
- *
-*/
+ */
 void printTitle()
 {
     printBorder();
@@ -67,13 +61,12 @@ void printTitle()
 
 }
 
-/* Shows the menu of the program, and prompts the user for succeeding choices
- * @param menuChoicePtr: Pointer to the variable that will store the user's menu choice
+/* Shows the menu of the program, and prompts the user for the succeeding choices.
+ * @param menuChoicePtr: Pointer to the variable that will store the user's menu choice.
+ * @return menuChoicePtr: Returns the number option that the user chose.
+ * @pre menuChoicePtr: Starting value of *menuChoicePtr must be 0 before the user enters the new value.
  * 
- *
- *
- *
-*/
+ */
 
 void menuSelect(int *menuChoicePtr)
 {
@@ -105,35 +98,31 @@ void menuSelect(int *menuChoicePtr)
 }
 
 
-/* 
- *
- *
- * 
- * 
- * 
- * 
+/* Executes the chosen option from menuSelect()
+ * @param menuChoicePtr: Redirects user back to menu if the user chose the [0] option.
+ * @param playerList: The players.txt file for the inner functions to use.
+ * @pre menuChoicePtr: Correctly points to menuChoice.
+ * @pre playerList: Correctly formatted for reading.
  */
-void executeChoice(int menuChoice, int* menuChoicePtr)
-{
-    if (menuChoice == 1)
-    {
-        startGame(menuChoicePtr);
-    }
-    else if (menuChoice == 2)
-    {
-        printf("You chose 2\n");
-    }
-    else if (menuChoice == 3)
-    {
-        printf("You chose 3\n");
-    }
-}
-
-void startGame (int* menuChoicePtr)
+void startGame (int* menuChoicePtr, FILE* playerList)
 {
     int choice;
-    printf("[0] Go back\n");
+    int ctr = 0, temp = 0, playerCtr = 3;
+    char buffer[50];
+
+    printf("[0] Go back\n");                        // Displays players
     printf("[1] <New Player>\n");
+    while(fgets(buffer, 50, playerList) != NULL)    // Reads every 5 lines in the players.txt to display it in the player list
+    {
+        ctr++;
+        if (ctr == 1 || ctr == temp + 5)
+        {
+            temp = ctr;
+            printf("[%d] %s", playerCtr, buffer);
+            playerCtr++;
+        }
+    }
+
     getchar();
     scanf("%d", &choice);
 
@@ -142,6 +131,11 @@ void startGame (int* menuChoicePtr)
         case 0:
             *menuChoicePtr = 0;
             break;
+        case 1:
+        default:
+            printf("Invalid input\n");
+            break;
+        
     }
 }
 
