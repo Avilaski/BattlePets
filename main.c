@@ -46,6 +46,10 @@ int main ()
                     startGame(menuChoicePtr, playerList);               // Starts the game.
                     printf("%d\n", menuChoice);
                     break;
+                case 2:
+                case 3:
+                default:
+                    break;
             }
         }
     } 

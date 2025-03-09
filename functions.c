@@ -139,4 +139,8 @@ void startGame (int* menuChoicePtr, FILE* playerList)
     }
 }
 
-
+// /* 
+//  */
+// void viewCompetDium (int *menuChoicePtr)
+// {
+// }
