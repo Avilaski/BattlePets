@@ -5,6 +5,7 @@
 * Last Modified : <date when last revision was made>
 * Acknowledgments : https://www.asciiart.eu/ascii-draw-studio/app (very useful for creating ASCII art)
 *                   https://stackoverflow.com/questions/40554617/while-getchar-n (helped alot when troubleshooting invalid inputs)
+                    https://aruneworld.com/programming-language/c/c-library/c-library-windows-h/ (for windows and Sleep() function)
 */
 
 
